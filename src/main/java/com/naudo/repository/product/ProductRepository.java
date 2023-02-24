@@ -14,4 +14,5 @@ import com.naudo.model.product.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID>{
+	
 }

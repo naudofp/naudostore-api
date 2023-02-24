@@ -12,7 +12,7 @@ public record ProductCardDTO(
 		UUID id,
 		String name,
 		String description,
-		byte[] image
+		String imageBase64
 		) {
 
 }

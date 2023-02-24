@@ -26,7 +26,7 @@ public class ImageService {
 		}
 	}
 
-	public static String getImageBase64(Product entity) {
-       return Base64.getEncoder().encodeToString(entity.getImage());
+	public static String getImageBase64(byte[] image) {
+       return Base64.getEncoder().encodeToString(image);
     }
 }

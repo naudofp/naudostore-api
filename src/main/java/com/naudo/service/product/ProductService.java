@@ -1,6 +1,7 @@
 package com.naudo.service.product;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,4 +18,6 @@ public interface ProductService {
 	ProductSaveDTO save(ProductSaveDTO dto, MultipartFile file);
 	
 	List<ProductCardDTO> findItems();
+	
+	void delete(UUID id);
 }
