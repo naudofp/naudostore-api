@@ -1,6 +1,8 @@
-package com.naudo.model;
+package com.naudo.model.product;
 
 import java.util.UUID;
+
+import org.hibernate.Length;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +32,7 @@ public class Product {
 	@Column(name = "price_product")
 	private Double price;
 	@Lob
-	@Column(name = "image_product")
+	@Column(name = "image_product", length = Length.LOB_DEFAULT)
 	private byte[] image;
 	
 	public Product() {}

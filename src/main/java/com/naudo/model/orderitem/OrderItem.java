@@ -1,6 +1,9 @@
-package com.naudo.model;
+package com.naudo.model.orderitem;
 
 import java.util.UUID;
+
+import com.naudo.model.order.Order;
+import com.naudo.model.product.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

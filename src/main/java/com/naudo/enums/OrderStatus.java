@@ -7,4 +7,6 @@ package com.naudo.enums;
 
 public enum OrderStatus {
 
+	WAITING_TO_PAYMENT,
+	PAID,
 }
