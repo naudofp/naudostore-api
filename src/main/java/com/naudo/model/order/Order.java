@@ -1,6 +1,7 @@
 package com.naudo.model.order;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,6 +48,7 @@ public class Order {
 		this.issueDate = issueDate;
 		this.status = status;
 		this.amount = amount;
+		this.items = new ArrayList<>();
 	}
 	
 	public Order() {}

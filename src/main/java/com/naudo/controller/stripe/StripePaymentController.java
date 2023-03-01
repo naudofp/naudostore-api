@@ -1,4 +1,4 @@
-package com.naudo.controller;
+package com.naudo.controller.stripe;
 
 import java.util.HashMap;
 import java.util.Map;
