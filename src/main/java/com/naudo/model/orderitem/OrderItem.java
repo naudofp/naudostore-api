@@ -5,7 +5,6 @@ import java.util.UUID;
 import com.naudo.model.order.Order;
 import com.naudo.model.product.Product;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -34,7 +33,7 @@ public class OrderItem {
 	private Product product;
 	@Column(name = "quantity_product")
 	private Integer quantity;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_order")
 	private Order order;
 

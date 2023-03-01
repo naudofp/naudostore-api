@@ -38,7 +38,7 @@ public class Order {
 	@Column(name = "status_order")
 	private OrderStatus status;
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderItem> items;
 	@Transient
 	private Double amount;

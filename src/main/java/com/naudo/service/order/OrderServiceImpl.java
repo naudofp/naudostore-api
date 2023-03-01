@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.naudo.dto.order.OrderDTO;
 import com.naudo.dto.orderitem.OrderItemDTO;
 import com.naudo.enums.OrderStatus;
+import com.naudo.exception.OrderNotFoundException;
 import com.naudo.exception.ProductNotFoundException;
 import com.naudo.model.order.Order;
 import com.naudo.model.orderitem.OrderItem;
@@ -37,7 +38,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public Order save(OrderDTO dto) {
+	public OrderDTO save(OrderDTO dto) {
 
 		List<OrderItem> itemsEntity = new ArrayList<>();
 		Order order = new Order(UUID.randomUUID(), LocalDateTime.now(), OrderStatus.WAITING_TO_PAYMENT, null);
@@ -50,11 +51,13 @@ public class OrderServiceImpl implements OrderService{
 		order.getItems().addAll(itemsEntity);
 		Order orderSaved = orderRepository.save(order);
 
-		return null;
+		return new OrderDTO(orderSaved.getId(), null, null, null, null);
 	}
 
 	@Override
 	public void delete(UUID id) {
+		Order order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
+		orderRepository.delete(order);
 	}
 
 }

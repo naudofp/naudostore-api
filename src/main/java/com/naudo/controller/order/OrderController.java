@@ -1,8 +1,12 @@
 package com.naudo.controller.order;
 
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +33,13 @@ public class OrderController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<Order> save(@RequestBody OrderDTO dto){
+	public ResponseEntity<OrderDTO> save(@RequestBody OrderDTO dto){
 		return ResponseEntity.status(HttpStatus.OK).body(service.save(dto));
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deleteOne(@PathVariable("id") String id){
+		service.delete(UUID.fromString(id));
+		return ResponseEntity.status(HttpStatus.OK).body("Order deleted successfully");
 	}
 }

@@ -3,7 +3,6 @@ package com.naudo.service.order;
 import java.util.UUID;
 
 import com.naudo.dto.order.OrderDTO;
-import com.naudo.model.order.Order;
 
 /** 
  * @author Fellipe Naudo  
@@ -12,7 +11,7 @@ import com.naudo.model.order.Order;
 
 public interface OrderService {
 
-	Order save(OrderDTO dto);
+	OrderDTO save(OrderDTO dto);
 	
 	void delete(UUID id);
 }

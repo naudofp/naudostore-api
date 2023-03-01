@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.naudo.exception.ImageByteUnvalidException;
+import com.naudo.exception.OrderNotFoundException;
 import com.naudo.exception.ProductNotFoundException;
 
 public class CustomControllerAdvice {
@@ -21,4 +22,12 @@ public class CustomControllerAdvice {
 		 return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(HttpStatus.CONFLICT, exception.getMessage()));
 	 }
 
+	 // ORDER 
+
+	 @ExceptionHandler(OrderNotFoundException.class)
+	 public ResponseEntity<ErrorResponse> handleOrderNotFoundException(Exception exception) {
+		 return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse(HttpStatus.CONFLICT, exception.getMessage()));
+	 }
+
+	 
 }
