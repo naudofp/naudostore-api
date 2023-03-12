@@ -8,6 +8,8 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.naudo.dto.order.OrderDTO;
+import com.naudo.dto.order.OrderDetailsDTO;
+import com.naudo.dto.orderitem.ItemDetailsDTO;
 import com.naudo.dto.orderitem.OrderItemDTO;
 import com.naudo.enums.OrderStatus;
 import com.naudo.exception.OrderNotFoundException;
@@ -16,8 +18,8 @@ import com.naudo.model.order.Order;
 import com.naudo.model.orderitem.OrderItem;
 import com.naudo.model.product.Product;
 import com.naudo.repository.order.OrderRepository;
-import com.naudo.repository.orderitem.OrderItemRepository;
 import com.naudo.repository.product.ProductRepository;
+import com.naudo.util.mapper.UtilMapper;
 
 /** 
  * @author Fellipe Naudo  
@@ -28,12 +30,10 @@ import com.naudo.repository.product.ProductRepository;
 public class OrderServiceImpl implements OrderService{
 
 	private final OrderRepository orderRepository;
-	private final OrderItemRepository itemRepository;
 	private final ProductRepository productRepository;
 	
-	public OrderServiceImpl(OrderRepository orderRepository, OrderItemRepository itemRepository, ProductRepository productRepository) {
+	public OrderServiceImpl(OrderRepository orderRepository, ProductRepository productRepository) {
 		this.orderRepository = orderRepository;
-		this.itemRepository = itemRepository;
 		this.productRepository = productRepository;
 	}
 
@@ -58,6 +58,14 @@ public class OrderServiceImpl implements OrderService{
 	public void delete(UUID id) {
 		Order order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
 		orderRepository.delete(order);
+	}
+
+	@Override
+	public OrderDetailsDTO findOrderById(UUID id) {
+		Order order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
+		List<ItemDetailsDTO> itemsDto = UtilMapper.eAllOrderItemsToAllItemDetailsDTO(order.getItems());
+		
+		return new OrderDetailsDTO(order.getId(), order.getAmount(), order.getStatus(), itemsDto);
 	}
 
 }

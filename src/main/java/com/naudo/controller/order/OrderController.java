@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.naudo.dto.order.OrderDTO;
-import com.naudo.model.order.Order;
+import com.naudo.dto.order.OrderDetailsDTO;
 import com.naudo.service.order.OrderService;
 
 /** 
@@ -41,5 +42,10 @@ public class OrderController {
 	public ResponseEntity<String> deleteOne(@PathVariable("id") String id){
 		service.delete(UUID.fromString(id));
 		return ResponseEntity.status(HttpStatus.OK).body("Order deleted successfully");
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<OrderDetailsDTO> orderDetails(@PathVariable String id){
+		return ResponseEntity.status(HttpStatus.OK).body(service.findOrderById(UUID.fromString(id)));
 	}
 }
