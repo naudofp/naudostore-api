@@ -1,5 +1,7 @@
 package com.naudo.util.payment;
 
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,8 +27,8 @@ public class PaymentController {
 	}
 
 	@PostMapping("/charge")
-	 public ResponseEntity<Boolean> chargeCard(@RequestParam("stripeToken") String stripeToken, @RequestParam("amount") double amount) throws Exception {
-        service.chargeCard(stripeToken, amount);
+	 public ResponseEntity<Boolean> chargeCard(@RequestParam("stripeToken") String stripeToken, @RequestParam("orderId") String orderId) throws Exception {
+        service.chargeCard(stripeToken, UUID.fromString(orderId));
 		return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 }

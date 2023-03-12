@@ -83,6 +83,8 @@ public class Order {
 
 	public Double getAmount() {
 		
+		double amount = 0;
+		
 		for (OrderItem i : items) {
 			amount += i.getAmount();
 		}

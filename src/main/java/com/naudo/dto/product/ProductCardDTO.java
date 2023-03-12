@@ -12,7 +12,8 @@ public record ProductCardDTO(
 		UUID id,
 		String name,
 		String description,
-		String imageBase64
+		String imageBase64,
+		Double price
 		) {
 
 }
