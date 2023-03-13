@@ -27,6 +27,6 @@ public class ImageService {
 	}
 
 	public static String getImageBase64(byte[] image) {
-       return Base64.getEncoder().encodeToString(image);
+       return("data:image/png;base64," + Base64.getEncoder().encodeToString(image));
     }
 }
