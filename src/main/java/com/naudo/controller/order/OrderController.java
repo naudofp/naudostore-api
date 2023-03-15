@@ -1,5 +1,6 @@
 package com.naudo.controller.order;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,11 @@ public class OrderController {
 	public ResponseEntity<String> deleteOne(@PathVariable("id") String id){
 		service.delete(UUID.fromString(id));
 		return ResponseEntity.status(HttpStatus.OK).body("Order deleted successfully");
+	}
+	
+	@GetMapping()
+	public ResponseEntity<List<OrderDTO>> getAll(){
+		return ResponseEntity.status(HttpStatus.OK).body(service.findOrders());
 	}
 	
 	@GetMapping("/{id}")

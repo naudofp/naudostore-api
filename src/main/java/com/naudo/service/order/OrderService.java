@@ -1,5 +1,6 @@
 package com.naudo.service.order;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.naudo.dto.order.OrderDTO;
@@ -17,5 +18,6 @@ public interface OrderService {
 	void delete(UUID id);
 	
 	OrderDetailsDTO findOrderById(UUID id);
-		
+	
+	List<OrderDTO> findOrders();
 }

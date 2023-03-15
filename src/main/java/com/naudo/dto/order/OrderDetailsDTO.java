@@ -1,5 +1,6 @@
 package com.naudo.dto.order;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +16,7 @@ public record OrderDetailsDTO(
 			
 			UUID id,
 			Double amount,
+			LocalDateTime issueDate,
 			OrderStatus status,
 			List<ItemDetailsDTO> items
 		) {}

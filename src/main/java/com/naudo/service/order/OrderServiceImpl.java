@@ -65,7 +65,14 @@ public class OrderServiceImpl implements OrderService{
 		Order order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
 		List<ItemDetailsDTO> itemsDto = UtilMapper.eAllOrderItemsToAllItemDetailsDTO(order.getItems());
 		
-		return new OrderDetailsDTO(order.getId(), order.getAmount(), order.getStatus(), itemsDto);
+		return new OrderDetailsDTO(order.getId(), order.getAmount(), order.getIssueDate(), order.getStatus(), itemsDto);
 	}
+
+	@Override
+	public List<OrderDTO> findOrders() {
+		List<Order> orders = orderRepository.findAll();
+		return UtilMapper.eAllOrderToAllOrderDTO(orders);
+	}
+	
 
 }
