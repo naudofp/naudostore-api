@@ -46,14 +46,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductCardDTO> findItems() {
+	public List<ProductCardDTO> findProducts() {
 		
 		List<Product> products = repository.findAll();
 		List<ProductCardDTO> dtos = UtilMapper.eAllProductsToAllProductCardDTO(products);
 		
 		return dtos;
 	}
-	
 
+	@Override
+	public ProductCardDTO findProduct(UUID id) {
+		Product product = repository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product " + id + " was not found"));
+		return UtilMapper.eProductToProductCardDTO(product);
+	}
 	
 }

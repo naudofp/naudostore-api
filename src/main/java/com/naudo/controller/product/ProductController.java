@@ -51,6 +51,11 @@ public class ProductController {
 	
 	@GetMapping()
 	public ResponseEntity<List<ProductCardDTO>> getAll(){
-		return ResponseEntity.status(HttpStatus.OK).body(service.findItems());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findProducts());
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<ProductCardDTO> getOne(@PathVariable("id") String id){
+		return ResponseEntity.status(HttpStatus.OK).body(service.findProduct(UUID.fromString(id)));
 	}
 }
