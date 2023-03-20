@@ -27,7 +27,7 @@ public class Product {
 	private UUID id;
 	@Column(name = "name_product")
 	private String name;
-	@Column(name = "description_product", length = 1000)
+	@Column(name = "description_product", length = Length.LONG16)
 	private String description;
 	@Column(name = "price_product")
 	private Double price;
