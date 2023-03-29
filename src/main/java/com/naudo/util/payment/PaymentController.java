@@ -27,8 +27,13 @@ public class PaymentController {
 	}
 
 	@PostMapping("/charge")
-	 public ResponseEntity<Boolean> chargeCard(@RequestParam("stripeToken") String stripeToken, @RequestParam("orderId") String orderId) throws Exception {
+	public ResponseEntity<Boolean> chargeCard(@RequestParam("stripeToken") String stripeToken, @RequestParam("orderId") String orderId) throws Exception {
         service.chargeCard(stripeToken, UUID.fromString(orderId));
 		return ResponseEntity.status(HttpStatus.OK).body(true);
     }
+	
+	@PostMapping("/pix")
+	public ResponseEntity<String> payPix(@RequestParam("orderId") String orderId) {
+		return ResponseEntity.status(HttpStatus.OK).body("");
+   }	
 }
