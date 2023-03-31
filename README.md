@@ -1,10 +1,17 @@
 # Webstore
-## Still in development.
-## See branch 'development'.
 
-This project was created with JAVA - SPRINGBOOT 
+This project was made for me to practice payments with Stripe.
+
+## Technologies used
+
+ - Java
+ - Spring Boot
+ - MySQL
+ - Stripe
 
 ## Screens
 
-![Captura de tela em 2023-03-02 11-35-11](https://user-images.githubusercontent.com/106287877/222458598-08f1f2f6-df19-4e34-bc13-d703540c78db.png)
-![Captura de tela em 2023-03-02 11-35-38](https://user-images.githubusercontent.com/106287877/222458609-97504076-859a-42fa-8a38-225e0b42017a.png)
+![image](https://user-images.githubusercontent.com/106287877/229208491-ec6cea6e-7232-4c18-a71b-19772cdc599b.png)
+![image](https://user-images.githubusercontent.com/106287877/229208568-57f47ff5-490c-487b-b8ba-87ca0b32a91b.png)
+![image](https://user-images.githubusercontent.com/106287877/229208705-1261f1df-6c96-4a55-b7cf-e841adc5b090.png)
+
