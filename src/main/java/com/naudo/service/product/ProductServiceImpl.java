@@ -1,6 +1,5 @@
 package com.naudo.service.product;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +12,7 @@ import com.naudo.exception.ProductNotFoundException;
 import com.naudo.model.product.Product;
 import com.naudo.repository.product.ProductRepository;
 import com.naudo.service.image.ImageService;
+import com.naudo.util.mapper.UtilMapper;
 
 /** 
  * @author Fellipe Naudo  
@@ -46,21 +46,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductCardDTO> findItems() {
+	public List<ProductCardDTO> findProducts() {
 		
 		List<Product> products = repository.findAll();
-		List<ProductCardDTO> dtos = new ArrayList<>();
-		
-		products.forEach((product) -> dtos.add( new ProductCardDTO(
-						product.getId(),
-						product.getName(),
-						product.getDescription(),
-						("data:image/jpeg;base64," + ImageService.getImageBase64(product.getImage()))
-					)));
+		List<ProductCardDTO> dtos = UtilMapper.eAllProductsToAllProductCardDTO(products);
 		
 		return dtos;
 	}
-	
 
+	@Override
+	public ProductCardDTO findProduct(UUID id) {
+		Product product = repository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product " + id + " was not found"));
+		return UtilMapper.eProductToProductCardDTO(product);
+	}
 	
 }

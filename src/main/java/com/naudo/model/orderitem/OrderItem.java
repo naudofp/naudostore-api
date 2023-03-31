@@ -33,7 +33,7 @@ public class OrderItem {
 	private Product product;
 	@Column(name = "quantity_product")
 	private Integer quantity;
-	@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_order")
 	private Order order;
 
@@ -43,6 +43,8 @@ public class OrderItem {
 		this.quantity = quantity;
 		this.order = order;
 	}
+	
+	public OrderItem() {}
 	
 	public Double getAmount() {
 		return product.getPrice() * quantity;

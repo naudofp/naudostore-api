@@ -1,6 +1,7 @@
 package com.naudo.model.order;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,7 +38,7 @@ public class Order {
 	@Column(name = "status_order")
 	private OrderStatus status;
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
 	private List<OrderItem> items;
 	@Transient
 	private Double amount;
@@ -47,6 +48,7 @@ public class Order {
 		this.issueDate = issueDate;
 		this.status = status;
 		this.amount = amount;
+		this.items = new ArrayList<>();
 	}
 	
 	public Order() {}
@@ -80,6 +82,8 @@ public class Order {
 	}
 
 	public Double getAmount() {
+		
+		double amount = 0;
 		
 		for (OrderItem i : items) {
 			amount += i.getAmount();

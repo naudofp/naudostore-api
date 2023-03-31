@@ -17,7 +17,9 @@ public interface ProductService {
 
 	ProductSaveDTO save(ProductSaveDTO dto, MultipartFile file);
 	
-	List<ProductCardDTO> findItems();
+	List<ProductCardDTO> findProducts();
+	
+	ProductCardDTO findProduct(UUID id);
 	
 	void delete(UUID id);
 }
